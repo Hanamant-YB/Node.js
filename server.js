@@ -1,58 +1,25 @@
-// console.log('server file is running');
+const express = require('express');
+const app = express();
+const db = require('./db.js');
+//
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
-// function add(a,b){
-//     return a+b;
-// }
-// const result = add(2,5);
-// console.log(result);
-// (function(){
-//     console.log('hanamant');
-// }());
+app.get('/',(req,res)=>{
+    console.log('welcome to the hotel');
+    res.send('welcome to the hotel');
+})
 
-
-// function callBack(){
-//     console.log('adding successfully complete')
-// }
-
-// const addition = function(a,b,callBack){
-//     // const result = 2;
-//     const result = a+b;
-//     console.log('result:',result)
-//     callBack();
-// }
-
-// addition(2,2,callBack);
-// addition(2,2,function(){
-//     console.log('adding complete');
-// })
-
-// addition(2,6,()=>{
-//     console.log('adding complete');
-// })
-
-// const fs = require('fs');
-// const os = require('os')
-
-// const user = os.userInfo();
-// console.log(user);
-// console.log(user.username)
-
-// fs.appendFile('greeting.txt','hello'+user.username+'\n',()=>{
-//     console.log('file is created');
-// })
-
-const notes = require('./notes');
-const _ = require('lodash')
-const age = notes.age;
-const result = notes.addNumber(age+50,age+50)
-console.log(age);
-console.log(result);
+const menuRouter = require('./routes/menuRoutes');
+const personRoutes = require('./routes/personRoutes');
 
 
-const data = ["person","person",1,1,2,3,4,1,2,"name",age];
-const unique = _.uniq(data);
-console.log(unique);
+app.use('/menu', menuRouter);
+app.use('/person',personRoutes);
 
 
-console.log(_.isString('hello'));
-// console.log(_.is)
+
+
+app.listen(3000, () => {
+  console.log('Server is running on port:3000')
+})

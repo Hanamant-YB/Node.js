@@ -31,8 +31,9 @@ app.get('/pori', (req, res) => {
   res.send(customized);
 })
 
-
-
+app.post('/items',(req,res)=>{
+    res.send('data is saved');
+})
 
 
 app.listen(3000, () => {
